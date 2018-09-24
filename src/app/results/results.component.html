@@ -1,6 +1,6 @@
 <h1 class="mat-h1">Formula 1 results for season {{ year }}</h1>
 
-<a routerLink="/seasons" routerLinkActive>&larr; Back to the seasons</a>
+<a class="back" routerLink="/seasons" routerLinkActive>&larr; Back to the seasons</a>
 
 <mat-spinner *ngIf="isLoading" class="results-spinner"></mat-spinner>
 
@@ -37,4 +37,4 @@
     </table>
 </div>
 
-<a routerLink="/seasons" routerLinkActive>&larr; Back to the seasons</a>
+<a class="back" routerLink="/seasons" routerLinkActive>&larr; Back to the seasons</a>
