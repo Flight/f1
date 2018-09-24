@@ -1,11 +1,15 @@
-<h1>Formula 1 Seasons</h1>
+<h1 class="mat-h1">Formula 1 Seasons</h1>
 
 <mat-spinner *ngIf="isLoading" class="seasons-spinner"></mat-spinner>
 
-<ul *ngIf="showSeasons">
-    <li *ngFor="let season of seasons">
-        <a [routerLink]="['/results', season.year]" routerLinkActive>
-            {{ season | json }}
-        </a>
-    </li>
-</ul>
+<div *ngIf="showSeasons">
+    <ul class="list">
+        <li *ngFor="let season of seasons">
+            <a [routerLink]="['/results', season.year]" routerLinkActive class="link">
+                <img src="assets/logo.png" width="100" height="67" alt="F1 Logo"><br>
+                <span class="year">{{ season.year }}</span><br>
+                {{ season.winnerName }}
+            </a>
+        </li>
+    </ul>
+</div>

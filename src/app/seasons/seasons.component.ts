@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
 import { ResultService } from '../services/result.service';
-import { StandingsList } from '../services/driver-standings.type';
+import { DriverStandings, StandingsList } from '../services/driver-standings.type';
 
 export interface Season {
   year: string;
@@ -27,7 +27,7 @@ export class SeasonsComponent implements OnInit {
       finalize(() => {
         this.isLoading = false;
       })
-    ).subscribe((data) => {
+    ).subscribe((data: DriverStandings) => {
       const standingsLists = data.MRData.StandingsTable.StandingsLists;
 
       standingsLists.forEach((standingsList: StandingsList) => {

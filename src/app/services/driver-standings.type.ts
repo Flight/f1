@@ -36,7 +36,7 @@ export interface StandingsTable {
     StandingsLists: StandingsList[];
 }
 
-export interface DriverStandigsData {
+export interface DriverStandingsData {
     xmlns: string;
     series: string;
     url: string;
@@ -46,6 +46,6 @@ export interface DriverStandigsData {
     StandingsTable: StandingsTable;
 }
 
-export interface DriverStandigs {
-    MRData: DriverStandigsData;
+export interface DriverStandings {
+    MRData: DriverStandingsData;
 }

@@ -1,2 +1,22 @@
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+a {
+    color: #000;
+    &, &:hover, &:focus, &:active {
+        text-decoration: none;
+    }
+    &:hover {
+        color: #999;
+    }
+}
+
+mat-spinner {
+    margin: 50px auto;
+}
