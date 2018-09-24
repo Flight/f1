@@ -1,1 +1,11 @@
 <h1>Formula 1 Seasons</h1>
+
+<mat-spinner *ngIf="isLoading" class="seasons-spinner"></mat-spinner>
+
+<ul *ngIf="showSeasons">
+    <li *ngFor="let season of seasons">
+        <a [routerLink]="['/results', season.year]" routerLinkActive>
+            {{ season | json }}
+        </a>
+    </li>
+</ul>

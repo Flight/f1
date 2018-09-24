@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ResultsComponent } from './results.component';
 
@@ -14,7 +16,7 @@ describe('ResultsComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ ResultsComponent ],
-      imports: [ RouterTestingModule ],
+      imports: [ RouterTestingModule, MatProgressSpinnerModule, HttpClientTestingModule ],
       providers: [
         {
           provide: ActivatedRoute, useValue: route

@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatProgressSpinnerModule } from '@angular/material';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { SeasonsComponent } from './seasons.component';
 
@@ -8,7 +11,8 @@ describe('SeasonsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SeasonsComponent ]
+      declarations: [ SeasonsComponent ],
+      imports: [ MatProgressSpinnerModule, RouterTestingModule, HttpClientTestingModule ]
     })
     .compileComponents();
   }));

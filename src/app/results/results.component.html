@@ -1,1 +1,12 @@
-<h1>Results for {{ year }}</h1>
+<a routerLink="/seasons" routerLinkActive>Go to seasons</a>
+
+<mat-spinner *ngIf="isLoading" class="results-spinner"></mat-spinner>
+
+<div *ngIf="showResults">
+    <h1>Results for {{ year }} season</h1>
+    <ul>
+        <li *ngFor="let race of races">
+            {{ race | json }}
+        </li>
+    </ul>
+</div>
