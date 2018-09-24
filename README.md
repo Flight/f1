@@ -1,4 +1,4 @@
-# F1
+# F1 [![Build Status](https://travis-ci.org/Flight/f1.svg?branch=master)](https://travis-ci.org/Flight/f1)
 
 [Link to test on github pages](https://flight.github.io/f1/).
 

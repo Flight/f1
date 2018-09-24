@@ -7,8 +7,8 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display the seasons title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Formula 1 Results');
+    expect(page.getParagraphText()).toEqual('Formula 1 Seasons');
   });
 });

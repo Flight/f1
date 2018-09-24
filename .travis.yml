@@ -1,0 +1,33 @@
+sudo: required
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+language: node_js
+node_js:
+  - stable
+
+branches:
+  only:
+    - master
+
+before_script:
+  - npm install -g @angular/cli
+  - npm cache verify
+  - npm prune
+  - npm update
+
+cache:
+  directories:
+     - ./node_modules
+
+install:
+  - npm install
+
+script:
+  - ng test --watch=false --progress=false --browsers=ChromeHeadless
+  - ng e2e
