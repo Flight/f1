@@ -4,8 +4,8 @@
 
 <mat-spinner *ngIf="isLoading" class="results-spinner"></mat-spinner>
 
-<div *ngIf="showResults">
-    <table mat-table [dataSource]="racesDataSource" class="mat-elevation-z8">
+<div *ngIf="showResults" class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="racesDataSource">
         <ng-container matColumnDef="round">
             <th mat-header-cell *matHeaderCellDef>Round</th>
             <td mat-cell *matCellDef="let race">{{ race.round }}</td>
