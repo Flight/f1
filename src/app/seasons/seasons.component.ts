@@ -3,6 +3,7 @@ import { finalize } from 'rxjs/operators';
 
 import { ResultService } from '../services/result.service';
 import { DriverStandings, StandingsList } from '../services/driver-standings.type';
+import { WinnerService } from '../services/winner.service';
 
 export interface Season {
   year: string;
@@ -19,7 +20,7 @@ export class SeasonsComponent implements OnInit {
   public isLoading = false;
   public showSeasons = false;
 
-  constructor(private resultService: ResultService) { }
+  constructor(private resultService: ResultService, private winnerService: WinnerService) { }
 
   private getDriverStanding(): void {
     this.isLoading = true;
@@ -37,6 +38,8 @@ export class SeasonsComponent implements OnInit {
           year: standingsList.season,
           winnerName: `${driver.givenName} ${driver.familyName}`
         });
+
+        this.winnerService.addWinner(parseInt(standingsList.season, 10), driver.driverId);
       });
 
       this.showSeasons = true;

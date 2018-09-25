@@ -5,8 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { PageTitleService } from '../services/page-title.service';
 import { ResultService } from '../services/result.service';
+import { WinnerService } from '../services/winner.service';
 import { YearResults, Race } from '../services/year-results.type';
-import { DriverStandings } from '../services/driver-standings.type';
 
 export interface RaceInfo {
   round: string;
@@ -38,7 +38,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private pageTitleService: PageTitleService,
-    private resultService: ResultService
+    private resultService: ResultService,
+    private winnerService: WinnerService
   ) {
     const currentDate = new Date();
 
@@ -89,8 +90,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   private getSeasonWinner(): void {
-    this.resultService.getWinnersByYear(this.year).subscribe((driverStandings: DriverStandings): void => {
-      this.seasonWinnerId = driverStandings.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.driverId;
+    this.winnerService.getWinner(this.year).subscribe((winnerId: string): void => {
+      this.seasonWinnerId = winnerId;
     });
   }
 

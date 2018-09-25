@@ -21,7 +21,7 @@ export class ResultService {
     return this.http.get<YearResults>(`${this.baseUrl}/${year}/results/1.json?limit=${limit}`);
   }
 
-  getWinnersByYear(year: number, limit: number = 1): Observable<DriverStandings> {
+  getDriverStandingsByYear(year: number, limit: number = 1): Observable<DriverStandings> {
     return this.http.get<DriverStandings>(`${this.baseUrl}/${year}/driverStandings.json?limit=${limit}`);
   }
 }

@@ -12,11 +12,11 @@
         </ng-container>
         <ng-container matColumnDef="raceName">
             <th mat-header-cell *matHeaderCellDef>Race</th>
-            <td mat-cell *matCellDef="let race"><a [href]="race.raceUrl">{{ race.raceName }}</a></td>
+            <td mat-cell *matCellDef="let race"><a [href]="race.raceUrl" target="_blank">{{ race.raceName }}</a></td>
         </ng-container>
         <ng-container matColumnDef="trackName">
             <th mat-header-cell *matHeaderCellDef>Track</th>
-            <td mat-cell *matCellDef="let race"><a [href]="race.trackUrl">{{ race.trackName }}</a></td>
+            <td mat-cell *matCellDef="let race"><a [href]="race.trackUrl" target="_blank">{{ race.trackName }}</a></td>
         </ng-container>
         <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef>Date</th>
@@ -24,7 +24,7 @@
         </ng-container>
         <ng-container matColumnDef="winnerName">
             <th mat-header-cell *matHeaderCellDef>Winner</th>
-            <td mat-cell *matCellDef="let race"><a [href]="race.winnerUrl">{{ race.winnerName }}</a></td>
+            <td mat-cell *matCellDef="let race"><a [href]="race.winnerUrl" target="_blank">{{ race.winnerName }}</a></td>
         </ng-container>
         <ng-container matColumnDef="time">
             <th mat-header-cell *matHeaderCellDef>Time</th>
