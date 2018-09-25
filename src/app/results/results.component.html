@@ -37,4 +37,9 @@
     </table>
 </div>
 
+<div *ngIf="showError" class="error">
+    <p class="mat-h2">Error fetching the data</p>
+    <button type="button" mat-raised-button color="primary" (click)="reloadData()">Reload Data</button>
+</div>
+
 <a class="back" routerLink="/seasons" routerLinkActive>&larr; Back to the seasons</a>

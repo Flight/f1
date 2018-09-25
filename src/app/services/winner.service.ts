@@ -34,7 +34,7 @@ export class WinnerService {
     }
 
     return this.resultService.getDriverStandingsByYear(year).pipe(
-      map((driverStandings: DriverStandings) => {
+      map((driverStandings: DriverStandings): string => {
         const winnerId = driverStandings.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.driverId;
 
         this.addWinner(year, winnerId);

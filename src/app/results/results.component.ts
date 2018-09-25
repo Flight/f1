@@ -33,6 +33,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   public racesDataSource: MatTableDataSource<RaceInfo>;
   public displayedColumns: string[] = ['round', 'raceName', 'trackName', 'date',  'winnerName',  'time'];
   public seasonWinnerId: string;
+  public showError = false;
 
   constructor(
     private router: Router,
@@ -59,6 +60,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   private getResults(): void {
+    this.showError = false;
+
     this.resultService.getResultsByYear(this.year).pipe(
       finalize(() => {
         this.isLoading = false;
@@ -86,16 +89,19 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
       this.racesDataSource = new MatTableDataSource<RaceInfo>(racesInfo);
       this.showResults = true;
+    }, () => {
+      this.showError = true;
     });
   }
 
   private getSeasonWinner(): void {
     this.winnerService.getWinner(this.year).subscribe((winnerId: string): void => {
       this.seasonWinnerId = winnerId;
-    });
+    }, () => {});
   }
 
   private changeYear(year: number): void {
+    this.showError = false;
     this.isLoading = true;
     this.showResults = false;
     this.year = year;
@@ -104,11 +110,21 @@ export class ResultsComponent implements OnInit, OnDestroy {
     this.getSeasonWinner();
   }
 
+  public reloadData() {
+    this.changeYear(this.year);
+  }
+
   ngOnInit() {
     this.pageTitleService.setYear(this.year);
   }
 
   ngOnDestroy() {
+    this.showError = false;
+    this.isLoading = false;
+    this.showResults = false;
+    this.year = undefined;
+    this.racesDataSource = undefined;
+    this.seasonWinnerId = undefined;
     this.pageTitleService.setDefaultTitle();
   }
 }

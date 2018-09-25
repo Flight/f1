@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
 import { ResultService } from '../services/result.service';
@@ -6,7 +6,7 @@ import { DriverStandings, StandingsList } from '../services/driver-standings.typ
 import { WinnerService } from '../services/winner.service';
 
 export interface Season {
-  year: string;
+  year: number;
   winnerName: string;
 }
 
@@ -15,14 +15,16 @@ export interface Season {
   templateUrl: './seasons.component.html',
   styleUrls: ['./seasons.component.scss']
 })
-export class SeasonsComponent implements OnInit {
+export class SeasonsComponent implements OnInit, OnDestroy {
   public seasons: Array<Season> = [];
   public isLoading = false;
   public showSeasons = false;
+  public showError = false;
 
   constructor(private resultService: ResultService, private winnerService: WinnerService) { }
 
   private getDriverStanding(): void {
+    this.showError = false;
     this.isLoading = true;
     this.resultService.getDriverStandings(2005, 11).pipe(
       finalize(() => {
@@ -35,18 +37,30 @@ export class SeasonsComponent implements OnInit {
         const driver = standingsList.DriverStandings[0].Driver;
 
         this.seasons.push({
-          year: standingsList.season,
+          year: parseInt(standingsList.season, 10),
           winnerName: `${driver.givenName} ${driver.familyName}`
         });
-
         this.winnerService.addWinner(parseInt(standingsList.season, 10), driver.driverId);
       });
 
       this.showSeasons = true;
+    }, () => {
+      this.showError = true;
     });
+  }
+
+  public reloadData() {
+    this.getDriverStanding();
   }
 
   ngOnInit() {
     this.getDriverStanding();
+  }
+
+  ngOnDestroy() {
+    this.seasons = [];
+    this.isLoading = false;
+    this.showSeasons = false;
+    this.showError = false;
   }
 }

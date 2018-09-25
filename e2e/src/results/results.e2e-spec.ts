@@ -28,4 +28,10 @@ describe('workspace-project Results', () => {
     page.clickBackLink();
     expect(page.getPageUrl()).toContain('/seasons');
   });
+
+  it('should change back the title on navigating to results page', () => {
+    page.navigateTo();
+    page.clickBackLink();
+    expect(page.getPageTitle()).toEqual('Formula 1 Results');
+  });
 });
